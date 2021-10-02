@@ -53,8 +53,6 @@ class Google_User_info(db.Model):
         return f"{self.name}"
 
 
-
-
 ### serilizing the data 
 
 video_data = {
@@ -78,9 +76,6 @@ user_data = {
 
 
 
-
-
-
 def login_is_required(function):
 
     '''
@@ -97,29 +92,13 @@ def login_is_required(function):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ### function to get youtube videos
-
-
-
-
 class Download(Resource):
 
     '''
     This api is to download the youtube video at specific resolution (144p, 360p, 720p.. etc) 
     ## user has to submit the video url and path where to save the video and the resolution in which he wants to download his videos  ##
     '''
-
 
     def get(self):
         return {"datat":"hello world" }
@@ -194,12 +173,10 @@ class Vidlist(Resource):
             return posts.items
 
 
-
-
 '''
-##all google credential are here such as client id client secret json file
-# i have created two oauth api one for login and one for signup
-# having a single oauth api is creaing issus with missmatching uri 
+## All google credential are here such as client id client secret json file
+# I have created two oauth api one for login and one for signup
+# Having a single oauth api is creaing issus with missmatching uri 
 '''
 
 ## NOTE YOU HAVE TO CREATE TWO OAUTH API IN CONSOLE.CLOUD.GOOGLE.COM AND FILL THE RESPECTIVE ID'S AND GOOGLE AUTHENTICATION WILL WORK FINE
@@ -227,9 +204,6 @@ flow_signup = Flow.from_client_secrets_file(
 )       
 
         
-
-
-
 class Login(Resource):
 
     '''
@@ -241,9 +215,6 @@ class Login(Resource):
         authorization_url, state = flow_login.authorization_url()
         session["state"] = state
         return redirect(authorization_url)
-
-
-
 
 
 class auth_login(Resource):
@@ -327,8 +298,6 @@ class Logout(Resource):
     def get(self):
         session.clear()
         return redirect("/")
-
-
 
 
 
