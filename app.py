@@ -117,7 +117,7 @@ class Download(Resource):
 
         ## getting all the variable
         title = yt.title ## title of the video
-        not_list = ["'", "/", ">", "<", ",", '"', "\\", "|", "$", ".", "#"] ## windows will throw erroe if any items from this list is present in videos title
+        not_list = ["'", "/", ">", "<", ",", '"', "\\", "|", "$", ".", "#", "?", "[", "]", ] ## windows will throw erroe if any items from this list is present in videos title
         for i in not_list:
             if i in title:
                 title = title.replace(i,"")
