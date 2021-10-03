@@ -117,7 +117,7 @@ class Download(Resource):
 
         ## getting all the variable
         title = yt.title ## title of the video
-        not_list = ["'", "/", ">", "<", ",", '"', "\\", "|"] ## windows will throw erroe if any items from this list is present in videos title
+        not_list = ["'", "/", ">", "<", ",", '"', "\\", "|", "$", ".", "#"] ## windows will throw erroe if any items from this list is present in videos title
         for i in not_list:
             if i in title:
                 title = title.replace(i,"")
@@ -161,9 +161,10 @@ class Vidlist(Resource):
     @marshal_with(video_data)
     def post(self,page):
         if request.method == "POST" and "title" in request.form: ## filtering it with title
-            tag = request.form["tag"]
+            tag = request.form["title"]
             search = "%{}%".format(tag)
             posts = Vid_metadata.query.filter(Vid_metadata.title.like(search)).paginate(page=page, per_page=10, error_out=True)
+            return posts.items
 
         if request.method == "POST" and "channel" in request.form: ## filtering it with channel name
             tag = request.form["channel"]
